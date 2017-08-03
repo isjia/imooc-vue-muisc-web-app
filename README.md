@@ -44,3 +44,13 @@
 ### 1.2 源码
 
 <https://github.com/ustbhuangyi/vue-music>
+
+## CH02 项目准备工作
+
+### 2.1 需求分析
+
+### 2.2 vue-cli 安装
+
+`vue init webpack .`
+
+### 2.3 项目目录介绍及图标字体、公共样式等资源准备
