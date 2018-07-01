@@ -8,7 +8,9 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "babel-runtime": "^6.25.0",
@@ -58,7 +60,8 @@
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.3.3",
-    "webpack": "^2.6.1",
+    "vuepress": "^0.10.2",
+    "webpack": "^4.14.0",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
