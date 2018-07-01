@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Vue Music Web APP',
   description: 'Docs',
-  // base: '/docs/',
+  base: '/vue-muisc-web-app/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -10,7 +10,8 @@ module.exports = {
     sidebar: {
       '/notes/': [
         '',
-        '01',      /* /bar/ */
+        '01',
+        '02',
       ],
     }
   }
