@@ -20,7 +20,7 @@ export default {}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-@import "~common/stylus/variable"
+@import "~@/common/stylus/variable"
   .tab
     display: flex
     height: 44px
@@ -32,9 +32,8 @@ export default {}
       .tab-link
         padding-bottom: 5px
         color: $color-text-l
-      &.router-link-active
+      &.router-link-active //当前路由样式高亮
         .tab-link
           color: $color-theme
           border-bottom: 2px solid $color-theme
 </style>
-"
