@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>第3章 页面骨架开发 | Vue Music Web APP</title>
+    <meta name="description" content="Docs">
+    
+    
+    <link rel="preload" href="/vue-muisc-web-app/assets/css/5.styles.ce9b2652.css" as="style"><link rel="preload" href="/vue-muisc-web-app/assets/js/app.6ce1c46c.js" as="script"><link rel="preload" href="/vue-muisc-web-app/assets/js/1.d7fe1c0d.js" as="script"><link rel="prefetch" href="/vue-muisc-web-app/assets/js/2.db359f4c.js"><link rel="prefetch" href="/vue-muisc-web-app/assets/js/0.77e720e4.js"><link rel="prefetch" href="/vue-muisc-web-app/assets/js/3.6f5b86ac.js"><link rel="prefetch" href="/vue-muisc-web-app/assets/js/4.6d197f60.js">
+    <link rel="stylesheet" href="/vue-muisc-web-app/assets/css/5.styles.ce9b2652.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/vue-muisc-web-app/" class="home-link router-link-active"><!----><span class="site-name">
+      Vue Music Web APP
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/vue-muisc-web-app/" class="nav-link">Home</a></div><div class="nav-item"><a href="/vue-muisc-web-app/notes/" class="nav-link router-link-active">Notes</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue-muisc-web-app/" class="nav-link">Home</a></div><div class="nav-item"><a href="/vue-muisc-web-app/notes/" class="nav-link router-link-active">Notes</a></div><!----></nav><ul class="sidebar-links"><li><a href="/vue-muisc-web-app/notes/" class="sidebar-link">Vue 2.0 开发移动端音乐 WebApp</a></li><li><a href="/vue-muisc-web-app/notes/01.html" class="sidebar-link">第1章 课程内容介绍</a></li><li><a href="/vue-muisc-web-app/notes/02.html" class="sidebar-link">第2章 项目准备工作</a></li><li><a href="/vue-muisc-web-app/notes/03.html" class="active sidebar-link">第3章 页面骨架开发</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue-muisc-web-app/notes/03.html#_3-1-页面入口-header-组件的编写" class="sidebar-link">3.1 页面入口+header 组件的编写</a></li><li class="sidebar-sub-header"><a href="/vue-muisc-web-app/notes/03.html#_3-2-路由配置-tab-顶导组件开发" class="sidebar-link">3.2 路由配置+ tab 顶导组件开发</a></li></ul></li></ul></div><div class="page"><div class="content"><h1 id="第3章-页面骨架开发"><a href="#第3章-页面骨架开发" aria-hidden="true" class="header-anchor">#</a> 第3章 页面骨架开发</h1><h2 id="_3-1-页面入口-header-组件的编写"><a href="#_3-1-页面入口-header-组件的编写" aria-hidden="true" class="header-anchor">#</a> 3.1 页面入口+header 组件的编写</h2><h3 id="index-html-中增加meta-info"><a href="#index-html-中增加meta-info" aria-hidden="true" class="header-anchor">#</a> index.html 中增加meta info</h3><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>width=device-width,initial-scale=1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="package-json"><a href="#package-json" aria-hidden="true" class="header-anchor">#</a> package.json</h3><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> babel-runtime --save <span class="token comment"># es语法转移，无需引入代码中</span>
+<span class="token function">npm</span> <span class="token function">install</span> fastclick --save <span class="token comment"># 解决移动端点击2ms延时问题，main.js 中import</span>
+<span class="token function">npm</span> <span class="token function">install</span> babel-polyfill -D <span class="token comment"># es6 api的转译，main.js 中import</span>
+</code></pre></div><h3 id="使用-m-header-component"><a href="#使用-m-header-component" aria-hidden="true" class="header-anchor">#</a> 使用 m-header component</h3><ol><li>js中引入</li><li>js中注册</li><li>HTML中使用</li></ol><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- step 3 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>m-header</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>m-header</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/ecmascript-6<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">import</span> MHeader <span class="token keyword">from</span> <span class="token string">'@/components/m-header/m-header'</span> <span class="token comment">// step 1</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    MHeader <span class="token comment">// step 2</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylus<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet/stylus<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="_3-2-路由配置-tab-顶导组件开发"><a href="#_3-2-路由配置-tab-顶导组件开发" aria-hidden="true" class="header-anchor">#</a> 3.2 路由配置+ tab 顶导组件开发</h2><h3 id="使用-vue-router"><a href="#使用-vue-router" aria-hidden="true" class="header-anchor">#</a> 使用 Vue Router</h3><ol><li>编写路由 <code>router/index.js</code></li></ol><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Router <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+
+<span class="token keyword">import</span> Recommend <span class="token keyword">from</span> <span class="token string">'@/components/recommend/recommend'</span>
+<span class="token keyword">import</span> Rank <span class="token keyword">from</span> <span class="token string">'@/components/rank/rank'</span>
+<span class="token keyword">import</span> Search <span class="token keyword">from</span> <span class="token string">'@/components/search/search'</span>
+<span class="token keyword">import</span> Singer <span class="token keyword">from</span> <span class="token string">'@/components/singer/singer'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Root'</span><span class="token punctuation">,</span>
+      redirect<span class="token punctuation">:</span> <span class="token string">'/recommend'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">'/recommend'</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Recommend'</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Recommend
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">'/rank'</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Rank'</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Rank
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">'/search'</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Search'</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Search
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">'/singer'</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Singer'</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Singer
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><ol start="2"><li>挂载路由 <code>main.js</code></li></ol><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router/index'</span>
+<span class="token operator">...</span>
+
+<span class="token comment">/* eslint-disable no-new */</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  router<span class="token punctuation">,</span> <span class="token comment">// 挂载路由</span>
+  render<span class="token punctuation">:</span> h <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><ol start="3"><li>路由导航</li></ol><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-item<span class="token punctuation">&quot;</span></span> <span class="token attr-name">tag</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>div<span class="token punctuation">&quot;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/recommend<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>推荐<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-item<span class="token punctuation">&quot;</span></span> <span class="token attr-name">tag</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>div<span class="token punctuation">&quot;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/singer<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>歌手<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-item<span class="token punctuation">&quot;</span></span> <span class="token attr-name">tag</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>div<span class="token punctuation">&quot;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/rank<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>排行<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-item<span class="token punctuation">&quot;</span></span> <span class="token attr-name">tag</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>div<span class="token punctuation">&quot;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/search<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tab-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>搜索<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/ecmascript-6<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylus<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet/stylus<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+@import <span class="token string">&quot;~@/common/stylus/variable&quot;</span>
+  .tab
+    <span class="token property">display</span><span class="token punctuation">:</span> flex
+    <span class="token property">height</span><span class="token punctuation">:</span> 44px
+    <span class="token property">line-height</span><span class="token punctuation">:</span> 44px
+    <span class="token property">font-size</span><span class="token punctuation">:</span> $font-size-medium
+    .tab-item
+      <span class="token property">flex</span><span class="token punctuation">:</span> 1
+      <span class="token property">text-align</span><span class="token punctuation">:</span> center
+      .tab-link
+        <span class="token property">padding-bottom</span><span class="token punctuation">:</span> 5px
+        <span class="token property">color</span><span class="token punctuation">:</span> $color-text-l
+      &amp;.router-link-active
+        .tab-link
+          <span class="token property">color</span><span class="token punctuation">:</span> $color-theme
+          <span class="token property">border-bottom</span><span class="token punctuation">:</span> 2px solid $color-theme
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ol start="4"><li>渲染 router view</li></ol><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>m-header</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>m-header</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tab</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tab</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/ecmascript-6<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">import</span> MHeader <span class="token keyword">from</span> <span class="token string">'@/components/m-header/m-header'</span>
+<span class="token keyword">import</span> Tab <span class="token keyword">from</span> <span class="token string">'@/components/tab/tab'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    MHeader<span class="token punctuation">,</span>
+    Tab
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="根路由默认跳转"><a href="#根路由默认跳转" aria-hidden="true" class="header-anchor">#</a> 根路由默认跳转</h3><div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Root'</span><span class="token punctuation">,</span>
+  redirect<span class="token punctuation">:</span> <span class="token string">'/recommend'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div></div><div class="page-edit"><!----><!----></div><div class="page-nav"><p class="inner"><span class="prev">
+        ← <a href="/vue-muisc-web-app/notes/02.html" class="prev">
+          第2章 项目准备工作
+        </a></span><!----></p></div></div></div></div>
+    <script src="/vue-muisc-web-app/assets/js/1.d7fe1c0d.js" defer></script><script src="/vue-muisc-web-app/assets/js/app.6ce1c46c.js" defer></script>
+  </body>
+</html>
