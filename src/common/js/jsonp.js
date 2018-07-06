@@ -13,6 +13,7 @@ export default function jsonp (url, data, option) {
   })
 }
 
+// 拼接data为url的参数
 function param (data) {
   let url = ''
   for (var k in data) {

@@ -1,7 +1,15 @@
 <template>
   <div class="recommend">
     <div class="recommend-content">
-      <div class="slider-wrapper"></div>
+      <div class="slider-wrapper">
+        <slider>
+          <div v-for="item in recommends" :key="item.id">
+            <a :href="item.linkUrl">
+              <img :src="item.picUrl" alt="item.id">
+            </a>
+          </div>
+        </slider>
+      </div>
       <div class="recommend-list">
         <h1 class="list-title">热门推荐</h1>
         <ul></ul>
@@ -13,8 +21,17 @@
 <script type="text/ecmascript-6">
 import {getRecommend} from '@/api/recommend'
 import {ERR_OK} from '@/api/config'
+import Slider from '@/base/slider/slider'
 
 export default {
+  data () {
+    return {
+      recommends: []
+    }
+  },
+  components: {
+    Slider
+  },
   created () {
     // 获取数据
     this._getRecommend()
@@ -23,7 +40,8 @@ export default {
     _getRecommend () {
       getRecommend().then((res) => {
         if (res.code === ERR_OK) {
-          console.log(res.data.slider)
+          // console.log(res.data.slider)
+          this.recommends = res.data.slider
         }
       })
     }
