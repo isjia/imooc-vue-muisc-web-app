@@ -15,8 +15,10 @@
     "docs:publish": "npm run docs:build && npm run docs:deploy"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "better-scroll": "^0.1.15",
+    "body-parser": "^1.18.3",
     "fastclick": "^1.0.6",
     "jsonp": "^0.2.1",
     "vue": "^2.5.2",
