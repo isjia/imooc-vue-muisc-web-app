@@ -77,7 +77,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
           params: req.query
         }).then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           res.json(response.data)
         }).catch((e) => {
           console.log(e)
