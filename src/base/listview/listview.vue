@@ -23,14 +23,24 @@
         </li>
       </ul>
     </div>
+    <div class="list-fixed" v-show="fixedTitle" ref="fixed">
+      <h1 class="fixed-title">
+        {{fixedTitle}}
+      </h1>
+    </div>
+    <div v-show="!data.length" class="loading-container">
+      <loading></loading>
+    </div>
   </scroll>
 </template>
 
 <script type="text/ecmascript-6">
 import Scroll from '@/base/scroll/scroll'
+import Loading from '@/base/loading/loading'
 import { getData } from '@/common/js/dom'
 
 const ANCHOR_HEIGHT = 18
+const TITLE_HEIGHT = 30
 
 export default {
   created () {
@@ -42,7 +52,8 @@ export default {
   data () {
     return {
       currentIndex: 0,
-      scrollY: -1
+      scrollY: -1,
+      diff: -1
     }
   },
   props: {
@@ -52,13 +63,20 @@ export default {
     }
   },
   components: {
-    Scroll
+    Scroll,
+    Loading
   },
   computed: {
     shortcutList () {
       return this.data.map((group) => {
         return group.title.substr(0, 1)
       })
+    },
+    fixedTitle () {
+      if (this.scrollY > 0) {
+        return
+      }
+      return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
     }
   },
   methods: {
@@ -124,11 +142,21 @@ export default {
 
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i
+          this.diff = height2 + newY
           return
         }
       }
       // 滚动到底部，且 -newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2
+    },
+    diff (newVal) {
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+
+      if (this.fixedTop === fixedTop) {
+        return
+      }
+      this.fixedTop = fixedTop
+      this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
     }
   }
 }
