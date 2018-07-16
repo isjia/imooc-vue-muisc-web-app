@@ -4,14 +4,33 @@
       <i class="icon-back"></i>
     </div>
     <h1 class="title" v-html="title"></h1>
-    <div class="bg-image" :style="bgStyle">
+    <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="filter"></div>
     </div>
+    <div class="bg-layer" ref="layer"></div>
+    <scroll :data="songs"
+            :probe-type="probeType"
+            :listen-scroll="listenScroll"
+            class="list" ref="list"
+            @scroll="scroll">
+      <div class="song-list-wrapper">
+        <song-list :songs="songs"></song-list>
+      </div>
+    </scroll>
   </div>
 </template>
 
 <script>
+import Scroll from '@/base/scroll/scroll'
+import SongList from '@/base/song-list/song-list'
+
+const RESERVED_HEIGHT = 40
+
 export default {
+  components: {
+    Scroll,
+    SongList
+  },
   props: {
     bgImage: {
       type: String,
@@ -28,9 +47,35 @@ export default {
       default: ''
     }
   },
+  data () {
+    return {
+      scrollY: 0
+    }
+  },
   computed: {
     bgStyle () {
       return `background-image:url(${this.bgImage})`
+    }
+  },
+  created () {
+    this.probeType = 3
+    this.listenScroll = true
+  },
+  mounted () {
+    this.imageHeight = this.$refs.bgImage.clientHeight
+    this.minTranslateY = -this.imageHeight + RESERVED_HEIGHT
+    this.$refs.list.$el.style.top = `${this.imageHeight}px`
+  },
+  methods: {
+    scroll (pos) {
+      this.scrollY = pos.y
+    }
+  },
+  watch: {
+    scrollY (newY) {
+      let translateY = Math.max(this.minTranslateY, newY)
+      this.$refs.layer.style['transform'] = `translate3d(0, ${translateY}px, 0)`
+      this.$refs.layer.style['webkitTransform'] = `translate3d(0, ${translateY}px, 0)`
     }
   }
 }
@@ -41,7 +86,7 @@ export default {
   @import "~@/common/stylus/mixin"
   .music-list
     position: fixed
-    z-index: 100
+    z-index: 50
     top: 0
     left: 0
     bottom: 0
@@ -116,6 +161,7 @@ export default {
       bottom: 0
       width: 100%
       background: $color-background
+      // overflow hidden
       .song-list-wrapper
         padding: 20px 30px
       .loading-container
