@@ -3,8 +3,8 @@
     <div class="back">
       <i class="icon-back"></i>
     </div>
-    <h1 class="title"></h1>
-    <div class="bg-image">
+    <h1 class="title" v-html="title"></h1>
+    <div class="bg-image" :style="bgStyle">
       <div class="filter"></div>
     </div>
   </div>
@@ -12,13 +12,33 @@
 
 <script>
 export default {
-
+  props: {
+    bgImage: {
+      type: String,
+      default: ''
+    },
+    songs: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    title: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    bgStyle () {
+      return `background-image:url(${this.bgImage})`
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
+@import "~@/common/stylus/variable"
+  @import "~@/common/stylus/mixin"
   .music-list
     position: fixed
     z-index: 100
@@ -104,4 +124,3 @@ export default {
         top: 50%
         transform: translateY(-50%)
 </style>
-
